@@ -1,6 +1,8 @@
-## BQML + LLM Forecasting & Interpretation Demo (Flask App)
+![Application Screenshot](screen.png)
 
-This application demonstrates using BigQuery ML (BQML) for time series forecasting (ARIMA & TimesFM) on Google Analytics data, generating interpretations of model results using the Gemini API via Vertex AI, and displaying everything in a Flask web application deployed to Google App Engine.
+## BQML + LLM Forecasting & Interpretation Demo 
+
+This application demonstrates using BigQuery ML (BQML) for time series forecasting (ARIMA & TimesFM) on Google Analytics data, generating interpretations of model results using the Gemini API via Vertex AI, and displaying everything in a Flask web application deployed to Google App Engine. A key feature is the use of a Large Language Model (LLM) to provide natural language explanations and commentary on the ARIMA model evaluation and contribution analysis insights.
 
 ### Prerequisites
 
@@ -19,7 +21,10 @@ This application demonstrates using BigQuery ML (BQML) for time series forecasti
 
 2.  **Enable APIs:** Enable the necessary Google Cloud APIs for your project. You can do this via the Cloud Console or `gcloud`:
     ```bash
-    gcloud services enable bigquery.googleapis.com \n        aiplatform.googleapis.com \n        appengine.googleapis.com \n        iap.googleapis.com \n        appengineflex.googleapis.com # Often needed for App Engine admin tasks
+    gcloud services enable bigquery.googleapis.com \
+        aiplatform.googleapis.com \
+        appengine.googleapis.com \
+        appengineflex.googleapis.com # Often needed for App Engine admin tasks
     ```
 
 3.  **Create BigQuery Dataset:** Create a BigQuery dataset where the BQML models and results tables will be stored.
@@ -49,24 +54,15 @@ This application demonstrates using BigQuery ML (BQML) for time series forecasti
     *   `roles/aiplatform.user` (Vertex AI User)
     *(If using the default App Engine SA, you might need to add these roles.)*
 
-7.  **Set up Identity-Aware Proxy (IAP):**
-    *   Go to the Google Cloud Console -> Security -> Identity-Aware Proxy.
-    *   You might be prompted to configure an OAuth Consent Screen first. Fill in the required details (App name, support email). Crucially, add the **Authorized domains**:
-        *   `YOUR_APP_ENGINE_SERVICE_NAME-dot-YOUR_GCP_PROJECT_ID.lm.r.appspot.com` (Replace placeholders with your service name and project ID).
-        *   It's also often helpful to add `appspot.com`.
-    *   Find your App Engine application in the IAP list.
-    *   Toggle IAP **ON** for the App Engine app.
-    *   Add principals (users or groups) who should have access. Grant them the `roles/iap.securedWebAppUser` (IAP-secured Web App User) role.
-
-8.  **Install Python Dependencies:**
+7.  **Install Python Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-9.  **Deploy to App Engine:**
+8.  **Deploy to App Engine:**
     ```bash
     gcloud app deploy app.yaml --project YOUR_GCP_PROJECT_ID
     ```
     Follow the prompts. Deployment might take a few minutes.
 
-10. **Access the Application:** Once deployed, `gcloud` will output the URL for your service (usually `https://YOUR_APP_ENGINE_SERVICE_NAME-dot-YOUR_GCP_PROJECT_ID.lm.r.appspot.com`). Access this URL in your browser. You will be prompted to sign in via Google (due to IAP), using an account that you granted access to in step 7.
+9. **Access the Application:** Once deployed, `gcloud` will output the URL for your service (usually `https://YOUR_APP_ENGINE_SERVICE_NAME-dot-YOUR_GCP_PROJECT_ID.lm.r.appspot.com`). Access this URL in your browser.

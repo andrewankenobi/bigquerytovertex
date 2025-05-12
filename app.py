@@ -42,9 +42,12 @@ if not DATASET_ID:
 try:
     vertexai.init(project=PROJECT_ID, location=LOCATION)
     print(f"Vertex AI SDK initialized for project '{PROJECT_ID}' in '{LOCATION}'")
+    # Initialize the Gemini Model after Vertex AI SDK is initialized
+    model = GenerativeModel(GEMINI_MODEL_NAME)
+    print(f"Gemini model '{GEMINI_MODEL_NAME}' initialized.")
 except Exception as e:
-    print(f"Error initializing Vertex AI SDK: {e}")
-    # Depending on the app's requirements, you might want to exit or handle this differently
+    print(f"Error initializing Vertex AI SDK or Gemini Model: {e}")
+    model = None # Ensure model is None if initialization fails
 
 # Initialize BigQuery client
 try:

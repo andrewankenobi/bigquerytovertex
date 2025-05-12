@@ -1,6 +1,6 @@
 runtime: python312  # Or python311, python310, etc.
 # Replace with your desired App Engine service name (e.g., bqml-llm-demo)
-service: YOUR_APP_ENGINE_SERVICE_NAME
+service: <YOUR SERVICE NAME>
 # Replace with the email of the App Engine service account you want to use.
 # This account needs the following IAM roles in your GCP project:
 # - BigQuery Data Viewer (roles/bigquery.dataViewer) - To read BQ tables
@@ -8,15 +8,15 @@ service: YOUR_APP_ENGINE_SERVICE_NAME
 # - Vertex AI User (roles/aiplatform.user) - To call the Vertex AI (Gemini) API
 # If using the default App Engine SA (PROJECT_ID@appspot.gserviceaccount.com),
 # ensure it has these roles.
-service_account: YOUR_APP_ENGINE_SERVICE_ACCOUNT_EMAIL
+service_account: <YOUR SERVICE ACCOUNT>
 
 env_variables:
   # Replace with your BigQuery Dataset ID
-  BIGQUERY_DATASET: 'YOUR_BIGQUERY_DATASET'
+  BIGQUERY_DATASET: <YOUR BIGQUERY DATASET>
 
-entrypoint: gunicorn -b :$PORT app:app
+entrypoint: gunicorn -b :$PORT -t 120 app:app
 
-instance_class: F4 
+instance_class: F4_1G 
 
 automatic_scaling:
   min_instances: 0 # Can scale to zero for F1, F2, F4 instance classes
