@@ -1,0 +1,4 @@
+Flask>=2.0
+google-cloud-bigquery>=3.0
+google-cloud-aiplatform>=1.0
+gunicorn>=20.0 
