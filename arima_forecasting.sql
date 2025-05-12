@@ -289,13 +289,9 @@ FROM ML.GET_INSIGHTS(MODEL `${project_id}.${dataset_id}.ga_revenue_contribution_
 -- =================================================================================================
 -- Purpose: To export the trained BQML ARIMA model for GA Revenue to Vertex AI.
 -- =================================================================================================
-/* -- Uncomment to run
-EXPORT MODEL `${project_id}.${dataset_id}.arima_ga_daily_revenue_model`
-OPTIONS(
-  uri = 'gs://your-gcs-bucket-name/bqml-exports/arima_ga_daily_revenue',
-  vertex_ai_destination = 'aip://${project_id}.your-region.aiplatform.googleapis.com/projects/${project_id}/locations/your-region/models/arima_ga_daily_revenue_model'
-);
-*/
+
+ALTER MODEL IF EXISTS `${project_id}.${dataset_id}.arima_ga_daily_revenue_model`
+SET OPTIONS (vertex_ai_model_id="arima_ga_daily_revenue_model");
 
 -- =================================================================================================
 -- END OF SCRIPT
