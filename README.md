@@ -4,12 +4,16 @@
 
 This application demonstrates using BigQuery ML (BQML) for time series forecasting (ARIMA & TimesFM) on Google Analytics data, generating interpretations of model results using the Gemini API via Vertex AI, and displaying everything in a Flask web application deployed to Google App Engine. A key feature is the use of a Large Language Model (LLM) to provide natural language explanations and commentary on the ARIMA model evaluation and contribution analysis insights.
 
+[![Demo Video](https://img.youtube.com/vi/99nFCfCv5s8/0.jpg)](https://youtu.be/99nFCfCv5s8)
+
 ### Prerequisites
 
 1.  **Google Cloud Project:** You need a Google Cloud project with billing enabled.
 2.  **gcloud CLI:** Install and initialize the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install).
 3.  **Python & Pip:** Ensure you have Python 3.9+ and pip installed.
 4.  **Git:** To clone the repository.
+
+
 
 ### Setup Instructions
 
